@@ -1,0 +1,16 @@
+<h1> <%= @post.title %> </h1>
+
+<%= @post.content %> <br>
+
+<%# A link to the page of that post's author
+A link to the page of that post's destination
+A like button link that increases the like count for that post (should take the user to the same page) %>
+
+<%= link_to @post.blogger.name, blogger_path(@post.blogger.id) %> <br>
+<%= link_to @post.destination.name, destination_path(@post.destination.id) %> <br>
+<%= "Likes = #{@post.likes}" %>
+
+<%= form_for @post do |f| %>
+    <%= f.hidden_field :likes, value: @post.likes %>
+    <%= f.submit "Like!" %>
+<% end %>

@@ -1,0 +1,16 @@
+<h1> <%= "#{@destination.name}'s Destination Profile Page!"%> </h1>
+
+<h2> Featured Post: <%= link_to @destination.my_featured_post.title, post_path(@destination.my_featured_post) %> </h2>
+
+<h2> Unique Bloggers: <% u_a = @bloggers.uniq.each do |blogger| %> </h2>
+                            <%= link_to "#{blogger.name} is #{blogger.age} years old", blogger_path(blogger) %> <br>
+                            <% end %>
+
+<h2> Average age of Unique Bloggers: <%= @destination.avg_age %>
+
+<h2> Most recent 5 posts: </h2>
+<% @destination.posts.last(5).each do |post| %>
+    <%= link_to "#{post.id} - #{post.title} has #{post.likes} likes, created on #{post.created_at}", post_path(post.id) %> <br>
+<% end %>
+
+
